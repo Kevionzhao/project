@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //配置白明单，白名单之外的都需要token验证才可以访问
                 .antMatchers(HttpMethod.POST, "/userController/login", "/userController/register", "/error/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/userController/test").permitAll()
+                .antMatchers(HttpMethod.GET,"/userController/test/1").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

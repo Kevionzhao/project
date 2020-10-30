@@ -1,4 +1,4 @@
-package com.zdxf.system.result;
+package com.zdxf.common.module;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

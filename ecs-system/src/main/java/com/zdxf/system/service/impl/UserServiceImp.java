@@ -1,8 +1,8 @@
 package com.zdxf.system.service.impl;
 
-import com.zdxf.system.exception.CustomException;
-import com.zdxf.system.result.ResultCode;
-import com.zdxf.system.result.ResultJson;
+import com.zdxf.common.enums.CodeType;
+import com.zdxf.common.exception.CustomException;
+import com.zdxf.common.module.Result;
 import com.zdxf.system.entity.User;
 import com.zdxf.system.entity.UserDetail;
 import com.zdxf.system.entity.UserRoles;
@@ -49,7 +49,7 @@ public class UserServiceImp implements UserService {
 
         if (oldUser != null) {
 
-            throw new CustomException(ResultJson.failure(ResultCode.BAD_REQUEST, "用户已存在"));
+            throw new CustomException(Result.failure(CodeType.BAD_REQUEST, "用户已存在"));
         }
         //加密
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -99,7 +99,7 @@ public class UserServiceImp implements UserService {
             //该方法会去调用userDetailsService.loadUserByUsername()去验证用户名和密码，如果正确，则存储该用户名密码到“security 的 context中”
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException | BadCredentialsException e) {
-            throw new CustomException(ResultJson.failure(ResultCode.LOGIN_ERROR, e.getMessage()));
+            throw new CustomException(Result.failure(CodeType.LOGIN_ERROR, e.getMessage()));
         }
     }
 }

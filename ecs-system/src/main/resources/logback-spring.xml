@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--configuration节点，scan为true是配置文件发生改变时重新加载，scanPeriod为扫描的周期，debug表示是否打印logback内部的日志信息，查看logback状态 -->
+<configuration>
+
+    <!-- 定义变量name：变量名，value：变量值，可以通过${}使用值 -->
+    <property name="appName" value="govern"/>
+
+    <!-- 日志上下文名称 -->
+    <contextName>${appName}</contextName>
+
+    <!-- 定义timestamp变量 key变量名称，datePattern时间格式 -->
+    <timestamp key="timestamp" datePattern="yyyy-MM-dd HH:mm:ss"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%white(%d{HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %magenta((%file:%line\)) - %cyan(%msg%n)</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <appender name="access" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/${appName}/access_log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/${appName}/access_log_%d{yyyyMMdd}.%d{HH}.log</fileNamePattern>
+            <maxHistory>2400</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}\t[%thread]\t[%-5level]\t[%logger{50}]%msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/${appName}/error_log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/${appName}/error_log_%d{yyyyMMdd}.%d{HH}.log</fileNamePattern>
+            <maxHistory>2400</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}\t[%thread]\t[%-5level]\t[%logger{50}]%msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+
+    <logger name="org.springframework" level="INFO"/>
+    <!-- mybatis日志打印-->
+    <logger name="org.apache.ibatis" level="INFO" />
+    <logger name="org.mybatis" level="INFO" />
+    <logger name="java.sql" level="INFO" />
+
+
+    <logger name="druid.sql.Statement" level="INFO" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="access"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="access"/>
+        <appender-ref ref="error"/>
+    </root>
+
+</configuration>

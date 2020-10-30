@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test1016?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    initsize: 10
+    maxActive: 20
+    minIdle: 10
+    maxWait: 120000
+    poolPreparedStatements: false
+    maxOpenPreparedStatements: -1
+    validationQuery: select 1
+    testOnborrow: true
+    testOnReturn: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 120000
+    filters: slf4j,stat
+    
+#  flyway:
+#    #是否启动flyway(开发环境不使用migration)
+#    enabled: false
+#
+#  third:
+#    api:
+#      #需要是个县坐席的账号
+#      userName: admin
+#      password: 1qaz!QAZ
+#      feign:
+#        url: 127.0.0.1:8888
+#    camera:
+#      userName: admin1
+#      password: zdxf_123
+#      url: 20.255.7.229
+#
+#event:
+#  flow:
+#    code: 520527
+#
+#netty-websocket:
+#  host: 0.0.0.0  #任意IP可以进行访问
+#  path: / #配置路径（自己使用发现配置路径有问题，采用/即为原生的配置没有问题）
+#  port: 5656  #配置端口号
+#
+#device:
+#  key:
+#    product: 9b7ad886556147fdaec490bc99772b7a
+#    url: http://183.215.250.19:8032/auth/get_device_key

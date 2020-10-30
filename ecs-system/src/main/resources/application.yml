@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: ecs
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+jwt:
+  header: Authorization
+  secret: mySecret
+  #token有效期一天
+  expiration: 86400
+  tokenHead: "Bearer "
+    # 配置白名单（不需要认证）
+#  antMatchers: /login/**,/register/**,/static/**

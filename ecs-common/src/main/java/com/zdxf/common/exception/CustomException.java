@@ -1,6 +1,6 @@
 package com.zdxf.common.exception;
 
-import com.zdxf.common.module.Result;
+import com.zdxf.common.module.ResultJson;
 import lombok.Getter;
 
 /**
@@ -12,14 +12,14 @@ public class CustomException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    private Result result;
+    private ResultJson resultJson;
 
     private Integer code;
 
     private String message;
 
-    public CustomException(Result result){
-        this.result = result;
+    public CustomException(ResultJson resultJson){
+        this.resultJson = resultJson;
     }
 
     public CustomException(String message) {

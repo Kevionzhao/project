@@ -9,7 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ecs-common" />
         <module name="ecs-entity" />
-        <module name="ecs-system" />
+        <module name="ecs-system-services-backend" />
       </profile>
     </annotationProcessing>
   </component>

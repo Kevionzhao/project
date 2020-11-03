@@ -5,7 +5,7 @@
     <file url="file://$PROJECT_DIR$/ecs-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ecs-entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ecs-entity/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ecs-system/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ecs-system/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ecs-system-services-backend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ecs-system-services-backend/src/main/resources" charset="UTF-8" />
   </component>
 </project>

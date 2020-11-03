@@ -2,6 +2,7 @@ package com.zdxf.common.enums;
 
 /**
  * 日志类型
+ * @author Admin
  */
 public enum BusinessType {
 

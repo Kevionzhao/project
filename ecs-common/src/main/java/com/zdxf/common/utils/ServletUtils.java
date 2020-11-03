@@ -1,7 +1,5 @@
 package com.zdxf.common.utils;
 
-import com.zdxf.common.utils.ConvertUtil;
-import com.zdxf.common.utils.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

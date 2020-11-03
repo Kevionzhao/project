@@ -2,6 +2,7 @@ package com.zdxf.common.utils;
 
 /**
  * 字符串格式化
+ * @author Admin
  */
 public class StrFormatter {
 

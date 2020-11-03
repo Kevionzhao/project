@@ -2,6 +2,7 @@ package com.zdxf.common.enums;
 
 /**
  * 操作类型
+ * @author Admin
  */
 public enum OperatorType {
 

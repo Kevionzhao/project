@@ -14,8 +14,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class PageResult<T> {
-    private int page;
-    private int rows;
-    private int total;
+    /**
+     * 当前页
+     */
+    private Long current;
+    /**
+     * 当前分页总页数
+     */
+    private Long size;
+    /**
+     * 当前满足条件总行数
+     */
+    private Long total;
+    /**
+     * 当前分页总页数
+     */
+    private Long pages;
+    /**
+     * 分页记录列表
+     */
     private T data;
 }

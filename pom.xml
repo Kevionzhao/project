@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ecs-common</module>
-        <module>ecs-system</module>
+        <module>ecs-system-services-backend</module>
         <module>ecs-entity</module>
     </modules>
     <packaging>pom</packaging>

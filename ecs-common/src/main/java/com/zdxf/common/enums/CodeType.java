@@ -1,5 +1,9 @@
 package com.zdxf.common.enums;
 
+/**
+ * @author Admin
+ */
+
 public enum CodeType {
     /**
      * 请求返回状态码和说明信息

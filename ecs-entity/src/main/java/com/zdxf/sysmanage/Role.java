@@ -47,35 +47,35 @@ public class Role extends BaseEntity {
     @NotNull(message = "状态不能为空")
     private Integer sort;
 
-    /**
-     * 添加人
-     */
-    private Integer createUser;
-
-    /**
-     * 添加时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    /**
-     * 更新人
-     */
-    private Integer updateUser;
-
-    /**
-     * 更新时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
-
-    /**
-     * 是否已删除：0正常 1已删除
-     */
-    @TableLogic(value="0",delval="1")
-    private Integer deleted;
+//    /**
+//     * 添加人
+//     */
+//    private Integer createUser;
+//
+//    /**
+//     * 添加时间
+//     */
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date createTime;
+//
+//    /**
+//     * 更新人
+//     */
+//    private Integer updateUser;
+//
+//    /**
+//     * 更新时间
+//     */
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date updateTime;
+//
+//    /**
+//     * 是否已删除：0正常 1已删除
+//     */
+//    @TableLogic(value="0",delval="1")
+//    private Integer deleted;
 
 }
 

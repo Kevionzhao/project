@@ -1,4 +1,4 @@
-package com.zdxf.sysmanage.utils;
+package com.zdxf.utils;
 
 import com.zdxf.sysmanage.UserDetail;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -52,6 +52,30 @@ public class JwtUtils {
         Map<String, Object> claims = generateClaims(userDetail);
         claims.put(CLAIM_KEY_AUTHORITIES, authoritiesToArray(userDetail.getAuthorities()).get(0));
         return generateAccessToken(userDetail.getUsername(), claims);
+    }
+
+    /**
+     * 从数据声明生成令牌
+     *
+     * @param claims 数据声明
+     * @return 令牌
+     */
+    private String generateToken(Map<String, Object> claims) {
+        Date expirationDate = new Date(System.currentTimeMillis() + 2592000L * 1000);
+        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
+
+    /**
+     * 生成令牌
+     *
+     * @param userDetails 用户
+     * @return 令牌
+     */
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>(2);
+        claims.put("sub", userDetails.getUsername());
+        claims.put("created", new Date());
+        return generateToken(claims);
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.zdxf.sysmanage.service.impl;
 
-import com.zdxf.sysmanage.service.ILoginLogService;
+import com.zdxf.sysmanage.service.LoginLogService;
 import com.zdxf.sysmanage.LoginLog;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @author Admin
  */
 @Service
-public class LoginLogServiceImpl implements ILoginLogService {
+public class LoginLogServiceImpl implements LoginLogService {
     /**
      * 创建系统登录日志
      *

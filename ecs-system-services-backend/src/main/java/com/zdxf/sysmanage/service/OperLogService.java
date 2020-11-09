@@ -1,5 +1,6 @@
 package com.zdxf.sysmanage.service;
 
+import com.zdxf.common.base.IBaseService;
 import com.zdxf.sysmanage.OperLog;
 /**
  * <p>
@@ -7,7 +8,7 @@ import com.zdxf.sysmanage.OperLog;
  * </p>
  * @author Admin
  */
-public interface IOperLogService {
+public interface OperLogService extends IBaseService<OperLog> {
     /**
      * 创建系统操作日志
      *

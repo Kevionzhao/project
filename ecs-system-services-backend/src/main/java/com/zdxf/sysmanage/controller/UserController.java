@@ -4,7 +4,7 @@ import com.zdxf.common.annotation.Log;
 import com.zdxf.common.base.BaseController;
 import com.zdxf.common.enums.BusinessType;
 import com.zdxf.common.module.ResultJson;
-import com.zdxf.sysmanage.service.IUserService;
+import com.zdxf.sysmanage.service.UserService;
 import com.zdxf.sysmanage.User;
 import com.zdxf.sysmanage.query.UserQuery;
 import io.swagger.annotations.Api;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController extends BaseController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     /**
      * 用户信息列表查询

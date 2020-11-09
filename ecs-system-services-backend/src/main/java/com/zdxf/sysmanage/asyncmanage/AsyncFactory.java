@@ -5,8 +5,8 @@ import com.zdxf.common.utils.IpUtils;
 import com.zdxf.common.utils.LogUtils;
 import com.zdxf.common.utils.ServletUtils;
 import com.zdxf.common.utils.SpringUtils;
-import com.zdxf.sysmanage.service.ILoginLogService;
-import com.zdxf.sysmanage.service.IOperLogService;
+import com.zdxf.sysmanage.service.LoginLogService;
+import com.zdxf.sysmanage.service.OperLogService;
 import com.zdxf.sysmanage.LoginLog;
 import com.zdxf.sysmanage.OperLog;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -74,7 +74,7 @@ public class AsyncFactory {
                     loginLog.setStatus(Integer.valueOf(Constants.FAIL));
                 }
                 // 插入数据
-                SpringUtils.getBean(ILoginLogService.class).insertLoginLog(loginLog);
+                SpringUtils.getBean(LoginLogService.class).insertLoginLog(loginLog);
             }
         };
     }
@@ -91,7 +91,7 @@ public class AsyncFactory {
             public void run() {
                 // 远程查询操作地点
                 operLog.setOperLocation(IpUtils.getRealAddressByIP(operLog.getOperIp()));
-                SpringUtils.getBean(IOperLogService.class).insertOperlog(operLog);
+                SpringUtils.getBean(OperLogService.class).insertOperlog(operLog);
             }
         };
     }

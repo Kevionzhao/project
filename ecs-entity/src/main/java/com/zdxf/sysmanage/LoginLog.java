@@ -78,11 +78,11 @@ public class LoginLog extends BaseEntity {
      */
     private String msg;
 
-    /**
-     * 是否已删除：0正常 1已删除
-     */
-    @TableLogic(value="0",delval="1")
-    private Integer deleted;
+//    /**
+//     * 是否已删除：0正常 1已删除
+//     */
+//    @TableLogic(value="0",delval="1")
+//    private Integer deleted;
 
 
 }

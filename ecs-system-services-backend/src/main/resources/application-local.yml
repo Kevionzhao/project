@@ -39,7 +39,7 @@ mybatis-plus:
 # JWT配置
 WebSecurityConfig:
   # 配置白名单（不需要认证）
-  antMatchers: /*/**
+  antMatchers: /login/**
 
 #  flyway:
 #    #是否启动flyway(开发环境不使用migration)

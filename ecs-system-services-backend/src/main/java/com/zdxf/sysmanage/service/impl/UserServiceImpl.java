@@ -10,17 +10,18 @@ import com.zdxf.common.module.PageResult;
 import com.zdxf.common.utils.CommonUtils;
 import com.zdxf.common.utils.DateUtils;
 import com.zdxf.common.module.ResultJson;
-import com.zdxf.sysmanage.service.IUserService;
+import com.zdxf.sysmanage.service.UserService;
 import com.zdxf.sysmanage.dto.UserRulesDto;
 import com.zdxf.sysmanage.User;
 import com.zdxf.sysmanage.UserRole;
 import com.zdxf.sysmanage.mapper.UserMapper;
-import com.zdxf.sysmanage.mapper.UserRolesMapper;
+import com.zdxf.login.mapper.UserRolesMapper;
 import com.zdxf.sysmanage.query.UserQuery;
 import com.zdxf.vo.user.UserInfoVo;
 import com.zdxf.vo.user.UserListVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +40,7 @@ import java.util.*;
  * @since 2020-03-26
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -145,15 +146,18 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 //        if (!StringUtils.isEmpty(entity.getAvatar()) && entity.getAvatar().contains(CommonConfig.imageURL)) {
 //            entity.setAvatar(entity.getAvatar().replaceAll(CommonConfig.imageURL, ""));
 //        }
-//        if (entity.getId() != null && entity.getId() > 0) {
-//            entity.setUpdateUser(1);
-//            entity.setUpdateTime(DateUtils.now());
-//        } else {
-//            // 添加用户时默认密码：123456
-//            entity.setPassword(CommonUtils.password("123456"));
-//            entity.setCreateUser(1);
-//            entity.setCreateTime(DateUtils.now());
-//        }
+        if (entity.getId() != null && entity.getId() > 0) {
+            entity.setUpdateUser(1);
+            entity.setUpdateTime(DateUtils.now());
+        } else {
+//            // 密码加密如果采用spring security 进行登录校验，那么注册的时候密码采用同样的加密方式
+//            BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+//            entity.setPassword(encode.encode(entity.getPassword()));
+            //密码加密采用md5加密
+            entity.setPassword(CommonUtils.password(CommonUtils.password(entity.getPassword())));
+            entity.setCreateUser(1);
+            entity.setCreateTime(DateUtils.now());
+        }
         boolean result = this.saveOrUpdate(entity);
         if (!result) {
             return ResultJson.error();
@@ -167,7 +171,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
             for (String string : strings) {
                 UserRole userRole = new UserRole();
                 userRole.setUserId(entity.getId());
-                userRole.setRoleId(Integer.valueOf(string));
+                userRole.setRoleId(string);
                 Integer result2 = userRoleMapper.insert(userRole);
             }
         }

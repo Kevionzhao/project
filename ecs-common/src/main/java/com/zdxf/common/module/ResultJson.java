@@ -1,9 +1,7 @@
 package com.zdxf.common.module;
 
 import com.zdxf.common.enums.CodeType;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
@@ -88,8 +86,8 @@ public class ResultJson<T> implements Serializable {
         return new ResultJson(msg);
     }
 
-    public ResultJson success(Object data) {
-        return new ResultJson(HttpStatus.OK.value(), msg, data);
+    public static ResultJson success(Object data) {
+        return new ResultJson(data);
     }
 
     public static ResultJson success(String msg, Object data) {

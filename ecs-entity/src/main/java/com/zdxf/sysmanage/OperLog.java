@@ -93,16 +93,16 @@ public class OperLog extends BaseEntity implements Serializable {
      */
     private String errorMsg;
 
-    /**
-     * 操作时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    /**
-     * 是否已删除：0正常 1已删除
-     */
-    @TableLogic(value="0",delval="1")
-    private Integer deleted;
+//    /**
+//     * 操作时间
+//     */
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private Date createTime;
+//
+//    /**
+//     * 是否已删除：0正常 1已删除
+//     */
+//    @TableLogic(value="0",delval="1")
+//    private Integer deleted;
 }

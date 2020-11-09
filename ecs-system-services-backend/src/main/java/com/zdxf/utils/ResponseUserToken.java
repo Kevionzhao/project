@@ -1,4 +1,4 @@
-package com.zdxf.sysmanage.utils;
+package com.zdxf.utils;
 
 import com.zdxf.sysmanage.UserDetail;
 import lombok.AllArgsConstructor;

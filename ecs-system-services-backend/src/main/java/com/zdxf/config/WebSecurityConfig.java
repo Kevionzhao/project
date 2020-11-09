@@ -42,12 +42,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${WebSecurityConfig.antMatchers}")
     private String antMatchers;
 
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
                 //用来解决匿名用户访问无权限资源时的异常
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and().sessionManagement()
                 //禁用session 无状态
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 // don’t authenticate this particular request
@@ -77,6 +79,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-
 }

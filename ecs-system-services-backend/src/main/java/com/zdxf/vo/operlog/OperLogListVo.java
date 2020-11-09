@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * 操作日志列表Vo
+ * @author Admin
  */
 @Data
 public class OperLogListVo {

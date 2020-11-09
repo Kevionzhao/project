@@ -9,7 +9,7 @@ import com.zdxf.sysmanage.LoginLog;
  *
  * @author Admin
  */
-public interface ILoginLogService {
+public interface LoginLogService {
     /**
      * 创建系统登录日志
      *

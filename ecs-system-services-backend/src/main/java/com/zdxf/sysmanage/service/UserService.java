@@ -1,22 +1,34 @@
 package com.zdxf.sysmanage.service;
 
+import com.zdxf.common.base.IBaseService;
+import com.zdxf.common.module.ResultJson;
+import com.zdxf.sysmanage.dto.UserRulesDto;
 import com.zdxf.sysmanage.User;
-import com.zdxf.sysmanage.utils.ResponseUserToken;
 
-public interface UserService {
+/**
+ * <p>
+ * 后台用户管理表 服务类
+ * </p>
+ *
+ * @author 鲲鹏
+ * @since 2020-03-26
+ */
+public interface UserService extends IBaseService<User> {
 
     /**
-     * 注册用户
+     * 设置人员权限
+     *
+     * @param adminRulesDto 请求参数
      * @return
      */
-    void register(User user, String str);
-
+    ResultJson setRules(UserRulesDto adminRulesDto);
 
     /**
-     * 登陆
-     * @param username
-     * @param password
+     * 重置密码
+     *
+     * @param entity 实体对象
      * @return
      */
-    ResponseUserToken login(String username, String password);
+    ResultJson resetPwd(User entity);
+
 }

@@ -29,7 +29,7 @@ public class UserRole extends BaseEntity {
     /**
      * 角色ID
      */
-    private Integer roleId;
+    private String roleId;
 
 
 }

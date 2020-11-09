@@ -1,4 +1,4 @@
-package com.zdxf.sysmanage.utils;
+package com.zdxf.utils;
 
 import com.zdxf.common.utils.SpringUtils;
 import com.zdxf.sysmanage.User;

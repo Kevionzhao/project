@@ -11,16 +11,14 @@ import com.zdxf.common.utils.StringUtils;
 import com.zdxf.sysmanage.OperLog;
 import com.zdxf.sysmanage.mapper.OperLogMapper;
 import com.zdxf.sysmanage.query.OperLogQuery;
-import com.zdxf.sysmanage.service.IOperLogService;
+import com.zdxf.sysmanage.service.OperLogService;
 import com.zdxf.vo.operlog.OperLogListVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -31,7 +29,7 @@ import java.util.Map;
  * @since 2020-03-26
  */
 @Service
-public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> implements IOperLogService {
+public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> implements OperLogService {
 
     @Autowired
     private OperLogMapper operLogMapper;

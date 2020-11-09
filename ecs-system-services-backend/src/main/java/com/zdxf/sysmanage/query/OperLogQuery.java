@@ -5,6 +5,7 @@ import lombok.Data;
 
 /**
  * 操作日志查询条件
+ * @author Admin
  */
 @Data
 public class OperLogQuery extends BaseQuery {

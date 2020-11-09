@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserRolesMapper extends BaseMapper<UserRole> {
     /**
-     * 根据用户登录Id获取角色
-      * @param id
+     * 根据用户登录名获取角色
+     * @param userName
      * @return
      */
     String findRolesByUserId(String userName);

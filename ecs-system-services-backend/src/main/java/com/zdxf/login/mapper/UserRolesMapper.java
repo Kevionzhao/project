@@ -15,4 +15,11 @@ public interface UserRolesMapper extends BaseMapper<UserRole> {
      * @return
      */
     String findRolesByUserId(String userName);
+
+    /**
+     * 判断改用户和角色是否有绑定关系
+     * @param userRole
+     * @return
+     */
+    int selectCountByCondition(UserRole userRole);
 }

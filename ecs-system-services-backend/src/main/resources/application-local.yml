@@ -22,7 +22,7 @@ spring:
 
 #mybatis-plus configuration
 mybatis-plus:
-  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+  mapper-locations: classpath:mybatis/mappers/*/*Mapper.xml
   global-config:
     db-config:
       #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
@@ -36,10 +36,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-# JWT配置
-WebSecurityConfig:
-  # 配置白名单（不需要认证）
-  antMatchers: /login/**
 
 #  flyway:
 #    #是否启动flyway(开发环境不使用migration)

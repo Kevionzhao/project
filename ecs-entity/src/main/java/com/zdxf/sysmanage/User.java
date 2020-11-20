@@ -1,8 +1,5 @@
 package com.zdxf.sysmanage;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zdxf.base.BaseEntity;
@@ -21,16 +18,10 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_user")
+@TableName("t_user")
 public class User extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-//    /**
-//     * 主键ID
-//     */
-//    @TableId(value = "id", type = IdType.AUTO)
-//    private Integer id;
 
     /**
      * 真实姓名
@@ -95,7 +86,7 @@ public class User extends BaseEntity implements Serializable {
     private Integer status;
 
     /**
-     * 人员独立权限的菜单ID，多个规则逗号“,”隔开
+     *  用户独立角色ID(多个规则逗号“,”隔开)
      */
     private String rules;
 
@@ -125,36 +116,5 @@ public class User extends BaseEntity implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date loginTime;
-
-//    /**
-//     * 添加人
-//     */
-//    private Integer createUser;
-//
-//    /**
-//     * 创建时间
-//     */
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private Date createTime;
-//
-//    /**
-//     * 更新人
-//     */
-//    private Integer updateUser;
-//
-//    /**
-//     * 更新时间
-//     */
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private Date updateTime;
-//
-//    /**
-//     * 是否已删除：0正常 1已删除
-//     */
-//    @TableLogic(value="0",delval="1")
-//    private Integer deleted;
-
 
 }

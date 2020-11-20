@@ -4,6 +4,7 @@ import com.zdxf.login.service.impl.JwtUserDetailsServiceImpl;
 import com.zdxf.utils.JwtUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +29,8 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 
     @Autowired
     private JwtUtils jwtTokenUtil;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
 
 
@@ -35,7 +38,6 @@ public class JwtRequestFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
         final String requestTokenHeader = request.getHeader("Authorization");
-        String tokenHead = "Bearer ";
         String username = null;
         String jwtToken = null;
         // JWT报文表头的格式是"Bearer token". 去除"Bearer ",直接获取token

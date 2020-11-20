@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * @author Admin
  */
-@Mapper
 public interface UserMapper extends BaseMapper<User> {
     /**
      * 根据用户名获取用户信息
@@ -15,8 +14,4 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User findByUsername(String username);
-
-
-    int insertUser(User user);
-
 }

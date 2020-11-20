@@ -1,15 +1,10 @@
 package com.zdxf.sysmanage;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zdxf.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 /**
  * <p>
@@ -21,7 +16,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("sys_menu")
+@TableName("t_menu")
 public class Menu extends BaseEntity {
 
     private static final long serialVersionUID = 1L;

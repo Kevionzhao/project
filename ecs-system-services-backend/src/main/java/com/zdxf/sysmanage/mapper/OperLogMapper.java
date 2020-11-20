@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  *
  * @author Admin
  */
-@Mapper
 public interface OperLogMapper extends BaseMapper<OperLog> {
 
     /**

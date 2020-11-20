@@ -18,11 +18,11 @@ public class UserDetail implements UserDetails {
     private long id;
     private String username;
     private String password;
-    private List<String> roles;
+    private List<Role> roles;
 
     public UserDetail(
             String username,
-            List<String> roles,
+            List<Role> roles,
             String password) {
         this.username = username;
         this.password = password;
@@ -38,8 +38,9 @@ public class UserDetail implements UserDetails {
         if (!roles.isEmpty()){
 
             List<GrantedAuthority> authorities = new ArrayList<>();
-            for (String role : roles) {
-                authorities.add(new SimpleGrantedAuthority(role));
+            for (Role role : roles) {
+                //2020/11/18 添加前缀 "ROLE_"+
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
             }
             return authorities;
         }

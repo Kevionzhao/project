@@ -1,16 +1,12 @@
 package com.zdxf.sysmanage;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zdxf.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 操作日志表
@@ -19,7 +15,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode
 @Accessors(chain = true)
-@TableName("sys_oper_log")
+@TableName("t_oper_log")
 public class OperLog extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -93,16 +89,4 @@ public class OperLog extends BaseEntity implements Serializable {
      */
     private String errorMsg;
 
-//    /**
-//     * 操作时间
-//     */
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private Date createTime;
-//
-//    /**
-//     * 是否已删除：0正常 1已删除
-//     */
-//    @TableLogic(value="0",delval="1")
-//    private Integer deleted;
 }

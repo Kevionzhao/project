@@ -1,5 +1,7 @@
 package com.zdxf.sysmanage;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zdxf.base.BaseEntity;
 import lombok.Data;
@@ -14,12 +16,18 @@ import lombok.experimental.Accessors;
  * @author Admin
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Accessors(chain = true)
-@TableName("sys_role_menu")
-public class RoleMenu extends BaseEntity {
+@TableName("t_role_menu")
+public class RoleMenu {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键ID
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * type对应的值

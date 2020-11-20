@@ -12,9 +12,9 @@ spring:
       max-request-size: 1000MB
 jwt:
   header: Authorization
-  secret: mySecret
+  secret: zhongdianxingfa@xian
   #token有效期一天
   expiration: 86400
   tokenHead: "Bearer "
-    # 配置白名单（不需要认证）
-#  antMatchers: /login/**,/register/**,/static/**
+  # 配置白名单（不需要认证）
+  antMatchers: /login/**,/register/**,/static/**,/userController/**

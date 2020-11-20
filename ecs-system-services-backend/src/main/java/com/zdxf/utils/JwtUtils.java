@@ -1,14 +1,11 @@
 package com.zdxf.utils;
 
 import com.zdxf.sysmanage.UserDetail;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.CompressionCodecs;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import io.jsonwebtoken.Jwts;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,7 +43,9 @@ public class JwtUtils {
 
 
     /**
-     * create token
+     * create access token
+     * @param userDetail
+     * @return
      */
     public String generateAccessToken(UserDetail userDetail) {
         Map<String, Object> claims = generateClaims(userDetail);
@@ -56,13 +55,16 @@ public class JwtUtils {
 
     /**
      * 从数据声明生成令牌
-     *
      * @param claims 数据声明
      * @return 令牌
      */
     private String generateToken(Map<String, Object> claims) {
         Date expirationDate = new Date(System.currentTimeMillis() + 2592000L * 1000);
-        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
     /**
@@ -161,8 +163,12 @@ public class JwtUtils {
      * @return
      */
     private Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
+        try {
+            final Date expiration = getExpirationDateFromToken(token);
+            return expiration.before(new Date());
+        } catch (ExpiredJwtException expiredJwtException) {
+            return true;
+        }
     }
 
     /**
@@ -222,7 +228,8 @@ public class JwtUtils {
     }
 
     /**
-     * 传入 username 过期时间 claims 获取token
+     * 传入 username 过期时间
+     * claims 获取token
      * @param subject
      * @param claims
      * @return
@@ -231,17 +238,6 @@ public class JwtUtils {
         // subject  --->userDetail.getUsername()  access_token_expiration过期时间
         return generateToken(subject, claims, access_token_expiration);
     }
-
-
-    private List authoritiesToArray(Collection<? extends GrantedAuthority> authorities) {
-        List<String> list = new ArrayList<>();
-        for (GrantedAuthority ga : authorities) {
-            list.add(ga.getAuthority());
-        }
-        return list;
-    }
-
-
 
     /**
      * 生成token
@@ -253,13 +249,25 @@ public class JwtUtils {
     private String generateToken(String subject, Map<String, Object> claims, long expiration) {
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(subject) //username  设置面向用户
-                // .setId(UUID.randomUUID().toString())
-                .setIssuedAt(new Date())  //签发时间
-                .setExpiration(generateExpirationDate(expiration)) //生成token的过期时间
+                //设置用户名
+                .setSubject(subject)
+                //设置签发时间
+                .setIssuedAt(new Date())
+                //生成token的过期时间
+                .setExpiration(generateExpirationDate(expiration))
                 .compressWith(CompressionCodecs.DEFLATE)
-                .signWith(SIGNATURE_ALGORITHM, secret)  //SignatureAlgorithm.HS512, secret 生成签名
+                //签名算法和密钥
+                .signWith(SIGNATURE_ALGORITHM, secret)
                 .compact();
+    }
+
+
+    private List authoritiesToArray(Collection<? extends GrantedAuthority> authorities) {
+        List<String> list = new ArrayList<>();
+        for (GrantedAuthority ga : authorities) {
+            list.add(ga.getAuthority());
+        }
+        return list;
     }
 
 }

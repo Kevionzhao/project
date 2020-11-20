@@ -1,6 +1,5 @@
 package com.zdxf.sysmanage;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zdxf.base.BaseEntity;
@@ -21,7 +20,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("sys_login_log")
+@TableName("t_login_log")
 public class LoginLog extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -77,12 +76,5 @@ public class LoginLog extends BaseEntity {
      * 提示消息
      */
     private String msg;
-
-//    /**
-//     * 是否已删除：0正常 1已删除
-//     */
-//    @TableLogic(value="0",delval="1")
-//    private Integer deleted;
-
 
 }

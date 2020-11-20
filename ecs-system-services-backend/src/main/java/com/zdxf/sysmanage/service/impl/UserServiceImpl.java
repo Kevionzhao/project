@@ -6,10 +6,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zdxf.common.base.BaseQuery;
 import com.zdxf.common.base.BaseServiceImpl;
+import com.zdxf.common.enums.CodeType;
+import com.zdxf.common.exception.CustomException;
 import com.zdxf.common.module.PageResult;
 import com.zdxf.common.utils.CommonUtils;
 import com.zdxf.common.utils.DateUtils;
 import com.zdxf.common.module.ResultJson;
+import com.zdxf.sysmanage.Role;
+import com.zdxf.sysmanage.dto.UserDto;
+import com.zdxf.sysmanage.mapper.RoleMapper;
+import com.zdxf.sysmanage.service.UserRoleSerivce;
 import com.zdxf.sysmanage.service.UserService;
 import com.zdxf.sysmanage.dto.UserRulesDto;
 import com.zdxf.sysmanage.User;
@@ -23,6 +29,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -48,6 +55,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     private Validator validator;
     @Resource
     private UserRolesMapper userRoleMapper;
+    @Autowired
+    private UserRoleSerivce userRoleSerivce;
+    @Resource
+    private RoleMapper roleMapper;
 
     /**
      * 获取数据列表
@@ -65,6 +76,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
             queryWrapper.like("real_name", userQuery.getRealName());
         }
         queryWrapper.eq("deleted", 0);
+        queryWrapper.eq("status",1);
         queryWrapper.orderByDesc("create_time");
 
         // 查询数据
@@ -92,11 +104,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 //                // 获取部门
 //                String depName = depService.getDeptName(item.getDeptId());
 //                adminListVo.setDeptName(depName);
-                // 独立权限
+                // 用户角色
                 String[] rulesList = new String[0];
-                if (!StringUtils.isEmpty(item.getRules())) {
-                    rulesList = item.getRules().split(",");
+                if (!StringUtils.isEmpty(item.getRoleIds())) {
+                    rulesList = item.getRoleIds().split(",");
                 }
+                List<Role> roles = roleMapper.selectBatchIds(Arrays.asList(rulesList));
+                rulesList = roles.stream().map(Role::getName).toArray(String[]::new);
                 adminListVo.setRulesList(rulesList);
                 adminListVoList.add(adminListVo);
             });
@@ -136,6 +150,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
      * @return
      */
     @Override
+    @Transactional
     public ResultJson edit(User entity) {
         // 字段校验
         Set<ConstraintViolation<User>> violationSet = validator.validate(entity);
@@ -154,99 +169,88 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 //            BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
 //            entity.setPassword(encode.encode(entity.getPassword()));
             //密码加密采用md5加密
-            entity.setPassword(CommonUtils.password(CommonUtils.password(entity.getPassword())));
+            entity.setPassword(CommonUtils.password(entity.getPassword()));
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
-        boolean result = this.saveOrUpdate(entity);
-        if (!result) {
-            return ResultJson.error();
-        }
-
-        // 删除现存的人员角色关系数据
-        userRoleMapper.delete(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, entity.getId()));
-        // 新增人员角色关系表
-        if (!StringUtils.isEmpty(entity.getRoleIds())) {
-            String[] strings = entity.getRoleIds().split(",");
-            for (String string : strings) {
-                UserRole userRole = new UserRole();
-                userRole.setUserId(entity.getId());
-                userRole.setRoleId(string);
-                Integer result2 = userRoleMapper.insert(userRole);
+        try{
+            boolean result = this.saveOrUpdate(entity);
+            if (!result) {
+                return ResultJson.error("保存数据错误");
             }
+            List<UserRole> userRoles = userRoleMapper.selectList(new LambdaQueryWrapper<UserRole>().eq(UserRole::getRoleId, entity.getId()));
+            if (!userRoles.isEmpty()){
+                // 删除现存的人员角色关系数据
+                userRoleMapper.delete(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, entity.getId()));
+            }
+            // 新增人员角色关系表
+            UserRole userRole = new UserRole();
+            userRole.setUserId(entity.getId());
+            if (!StringUtils.isEmpty(entity.getRoleIds())) {
+                String[] ruleId = entity.getRoleIds().split(",");
+                for (String role : ruleId) {
+                    userRole.setRoleId(role);
+                    userRoleMapper.insert(userRole);
+                }
+            }
+            return ResultJson.success("数据保存成功");
+        }catch (CustomException e){
+            throw new CustomException(ResultJson.error(CodeType.EXCEPTION.getCode(), e.getMessage()));
         }
-        return ResultJson.success();
     }
 
     /**
-     * 删除记录
+     * 删除角色
      *
-     * @param entity 实体对象
+     * @param
      * @return
      */
     @Override
-    public ResultJson delete(User entity) {
-        if (entity.getId() == null || entity.getId() == 0) {
-            return ResultJson.error("记录ID不能为空");
+    public ResultJson deleteById(Integer id) {
+        UserRole userRole = new UserRole();
+        userRole.setUserId(id);
+        try {
+            int count = userRoleSerivce.selectCountByCondition(userRole);
+            if (count > 0) {
+                return ResultJson.error("已分配给角色，删除失败");
+            }
+            return super.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomException(ResultJson.error(CodeType.EXCEPTION.getCode(), e.getMessage()));
         }
-        entity.setUpdateUser(1);
-        entity.setUpdateTime(DateUtils.now());
-        return super.delete(entity);
-    }
 
-    /**
-     * 设置状态
-     *
-     * @param entity 实体对象
-     * @return
-     */
-    @Override
-    public ResultJson setStatus(User entity) {
-        if (entity.getId() == null || entity.getId() <= 0) {
-            return ResultJson.error("人员ID不能为空");
-        }
-        if (entity.getStatus() == null) {
-            return ResultJson.error("人员状态不能为空");
-        }
-        return super.setStatus(entity);
     }
-
 
     /**
      * 重置密码
      *
-     * @param entity 实体对象
+     * @param userDto 实体对象
      * @return
      */
     @Override
-    public ResultJson resetPwd(User entity) {
-        if (entity.getId() == null || entity.getId() <= 0) {
+    public ResultJson resetPwd(UserDto userDto) {
+        if (userDto.getId() == null || userDto.getId() <= 0) {
             return ResultJson.error("人员ID不能为空");
         }
-        entity.setPassword(CommonUtils.password("123456"));
-        return this.update(entity);
-    }
-
-    /**
-     * 设置人员权限
-     *
-     * @param adminRulesDto 请求参数
-     * @return
-     */
-    @Override
-    public ResultJson setRules(UserRulesDto adminRulesDto) {
-        // 人员ID
-        if (adminRulesDto.getId() == null || adminRulesDto.getId() <= 0) {
-            return ResultJson.error("人员ID不能为空");
+        User user = (User)this.getInfo(userDto.getId());
+        String newPwd = CommonUtils.password(userDto.getNewPwd());
+        if (!userDto.getPwd().equals(user.getPassword())){
+            return ResultJson.error("旧密码不正确");
+        }if(newPwd.equals(user.getPassword())) {
+            return ResultJson.error("新密码不能与旧密码相同");
         }
-        // 保存数据
-        User entity = new User();
-        entity.setId(adminRulesDto.getId());
-        entity.setRules(adminRulesDto.getRules());
-        boolean result = this.updateById(entity);
-        if (!result) {
-            return ResultJson.error("权限设置失败");
+//            // 密码加密如果采用spring security 进行登录校验，那么注册的时候密码采用同样的加密方式
+//            BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+//            entity.setPassword(encode.encode(entity.getPassword()));
+        //密码加密采用md5加密
+        user.setPassword(newPwd);
+        user.setUpdateUser(1);
+        user.setUpdateTime(DateUtils.now());
+        try{
+            this.update(user);
+            return ResultJson.success("密码修改成功");
+        }catch (Exception e){
+            throw new CustomException(ResultJson.error(CodeType.EXCEPTION.getCode(), e.getMessage()));
         }
-        return ResultJson.success("权限设置成功");
     }
 }

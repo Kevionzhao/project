@@ -5,11 +5,11 @@ import com.zdxf.common.annotation.Log;
 import com.zdxf.common.enums.BusinessStatus;
 import com.zdxf.common.utils.IpUtils;
 import com.zdxf.common.utils.ServletUtils;
+import com.zdxf.common.utils.SpringSecurityUtils;
 import com.zdxf.common.utils.StringUtils;
+import com.zdxf.sysmanage.OperLog;
 import com.zdxf.sysmanage.asyncmanage.AsyncFactory;
 import com.zdxf.sysmanage.asyncmanage.AsyncManager;
-import com.zdxf.sysmanage.OperLog;
-import com.zdxf.sysmanage.User;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
@@ -88,11 +88,8 @@ public class LogAspect {
             // 返回参数
             operLog.setJsonResult(JSON.toJSONString(jsonResult));
             operLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
-            //User user = ShiroUtils.getAdminInfo();
-            //测试用代码
-            User user = new User();
-            user.setUserName("Jack");
-            operLog.setOperName(user.getUserName());
+            String currentUserName = SpringSecurityUtils.getCurrentUserName();
+            operLog.setOperName(currentUserName);
             if (e != null) {
                 operLog.setStatus(BusinessStatus.FAIL.ordinal());
                 operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));

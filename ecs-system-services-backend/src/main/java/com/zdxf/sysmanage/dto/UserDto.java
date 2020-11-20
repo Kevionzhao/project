@@ -16,4 +16,13 @@ public class UserDto {
      * 规则
      */
     private String mobile;
+
+    /**
+     *
+     */
+    private String pwd;
+    /**
+     *
+     */
+    private String newPwd;
 }

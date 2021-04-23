@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="rocketmsg-bank1-demo" />
+        <module name="rocketmsg-bank1-demo (1)" />
+        <module name="rocketmsg-bank1-demo (2)" />
+        <module name="test" />
+        <module name="pay-system" />
+        <module name="hmily-demo" />
+        <module name="hmily-bank2-demo" />
+        <module name="redis-lock-1" />
+        <module name="bank3-demo" />
+        <module name="redis-lock-2" />
+        <module name="eureka-service" />
+        <module name="hmily-bank1-demo" />
+        <module name="pay-system-bank" />
+        <module name="rocketmsg-bank2-demo" />
+        <module name="bank1-demo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bank2-demo" target="8" />
+      <module name="euerkaclient-demo" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

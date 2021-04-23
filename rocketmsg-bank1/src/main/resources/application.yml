@@ -1,0 +1,50 @@
+server:
+  port: 8766
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bank1?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+#    type: com.alibaba.druid.pool.DruidDataSource
+    initsize: 10
+    maxActive: 20
+    minIdle: 10
+    maxWait: 120000
+    poolPreparedStatements: false
+    maxOpenPreparedStatements: -1
+    validationQuery: select 1
+    testOnborrow: true
+    testOnReturn: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 120000
+    filters: slf4j,stat
+  application:
+    name: rocker-bank1-demo
+
+#mybatis-plus configuration
+mybatis-plus:
+#  mapper-locations: classpath:mybatis/mappers/*/*Mapper.xml
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+      #逻辑删除配置
+      logic-delete-value: 1
+      #正常状态值
+      logic-not-delete-value: 0
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: producer_bank1

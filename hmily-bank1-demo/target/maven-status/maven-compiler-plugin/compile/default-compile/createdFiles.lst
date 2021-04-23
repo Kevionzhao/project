@@ -1,0 +1,9 @@
+com\zhao\bank1\mapper\AccountInfoMapper.class
+com\zhao\bank1\service\impl\AccountInfoServiceImpl.class
+com\zhao\bank1\spring\Bank2ClientFallback.class
+com\zhao\bank1\config\DatabaseConfiguration.class
+com\zhao\bank1\HmilyBank1Server.class
+com\zhao\bank1\controller\Bank1Controller.class
+com\zhao\bank1\spring\Bank2Client.class
+com\zhao\bank1\entity\AccountInfo.class
+com\zhao\bank1\service\AccountInfoService.class

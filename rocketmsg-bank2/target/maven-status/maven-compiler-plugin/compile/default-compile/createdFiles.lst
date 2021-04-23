@@ -1,7 +1,0 @@
-com\zhao\Bank2ServerDemo.class
-com\zhao\model\AccountChangeEvent.class
-com\zhao\service\impl\Bank2ServiceImpl.class
-com\zhao\mapper\AccountInfoMapper.class
-com\zhao\entity\AccountInfo.class
-com\zhao\rocket\ProduceListenerBank2.class
-com\zhao\service\Bank2Service.class

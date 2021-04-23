@@ -7,9 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rocketmsg-bank2" />
         <module name="rocketmsg-bank1-demo" />
         <module name="rocketmsg-bank1-demo (1)" />
         <module name="rocketmsg-bank1-demo (2)" />
+        <module name="rocketmsg-bank1" />
         <module name="test" />
         <module name="pay-system" />
         <module name="hmily-demo" />

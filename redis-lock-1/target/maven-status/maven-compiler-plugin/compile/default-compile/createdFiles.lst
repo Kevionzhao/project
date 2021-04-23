@@ -1,5 +1,0 @@
-com\zhao\config\RedisConfig.class
-com\zhao\controller\ProductController.class
-com\zhao\SpringBootTest.class
-com\zhao\util\RedisService.class
-com\zhao\util\RedisServiceImpl.class

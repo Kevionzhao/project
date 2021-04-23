@@ -1,10 +1,10 @@
 server:
   port: 9999
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
 #spring:
 #  application:
 #    name: test
@@ -13,28 +13,28 @@ eureka:
 #    url: jdbc:mysql://127.0.0.1:3306/bank1?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
 #    username: root
 #    password: root
-spring:
-  datasource:
-    driver: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/bank1?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
-    username: root
-    password: root
-    initsize: 10
-    maxActive: 20
-    minIdle: 10
-    maxWait: 120000
-    poolPreparedStatements: false
-    maxOpenPreparedStatements: -1
-    validationQuery: select 1
-    testOnborrow: true
-    testOnReturn: true
-    testWhileIdle: true
-    timeBetweenEvictionRunsMillis: 120000
-    filters: slf4j,stat
-  application:
-    name: bank1-demo
-  main:
-    allow-bean-definition-overriding: true
+#spring:
+#  datasource:
+#    driver: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/bank1?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: root
+#    initsize: 10
+#    maxActive: 20
+#    minIdle: 10
+#    maxWait: 120000
+#    poolPreparedStatements: false
+#    maxOpenPreparedStatements: -1
+#    validationQuery: select 1
+#    testOnborrow: true
+#    testOnReturn: true
+#    testWhileIdle: true
+#    timeBetweenEvictionRunsMillis: 120000
+#    filters: slf4j,stat
+#  application:
+#    name: bank1-demo
+#  main:
+#    allow-bean-definition-overriding: true
 
 ##mybatis-plus configuration
 #mybatis-plus:

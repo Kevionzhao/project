@@ -1,7 +1,7 @@
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\service\impl\AccountInfoServiceImpl.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\HmilyBank2Demo.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\controller\Bank2Controller.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\config\DatabaseConfiguration.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\entity\AccountInfo.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\mapper\AccountInfoDao.java
-E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank2\service\AccountInfoService.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\HmilyBank2Demo.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\mapper\AccountInfoDao.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\entity\AccountInfo.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\service\AccountInfoService.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\controller\Bank2Controller.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\service\impl\AccountInfoServiceImpl.java
+E:\dtx-demo-workspace\hmily-bank2-demo\src\main\java\com\zhao\bank1\bank2\config\DatabaseConfiguration.java

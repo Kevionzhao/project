@@ -22,6 +22,7 @@ public class ExecuteCostInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
         Long costTime = System.currentTimeMillis()-startTime;
+
         System.out.println("Interceptor cost="+costTime);
     }
 

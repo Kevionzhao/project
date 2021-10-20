@@ -21,6 +21,8 @@
         <module>pay-system-bank</module>
         <module>redis-lock-1</module>
         <module>redis-lock-2</module>
+        <module>spring-web-flux</module>
+        <module>spring-shiro-demo</module>
     </modules>
 
     <properties>

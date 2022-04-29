@@ -34,7 +34,7 @@ spring:
 
 #mybatis-plus configuration
 mybatis-plus:
-#  mapper-locations: classpath:mybatis/mappers/*/*Mapper.xml
+  mapper-locations: classpath:mybatis/mappers/*/*Mapper.xml
   global-config:
     db-config:
       #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";

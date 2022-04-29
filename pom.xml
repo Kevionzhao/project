@@ -23,6 +23,7 @@
         <module>redis-lock-2</module>
         <module>spring-web-flux</module>
         <module>spring-shiro-demo</module>
+        <module>Practice-Web</module>
     </modules>
 
     <properties>

@@ -19,8 +19,22 @@ public class SpringCacheController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/getUserById/{id}")
-    @Cacheable(cacheNames = "user")
+    @Cacheable(cacheNames = "user",key = "#root.methodName")
     public User getUserById(@PathVariable Integer id){
+        User user = userServiceImpl.getUser(id);
+        return user;
+    }
+
+    @GetMapping("/getUserInfo/{id}")
+    @Cacheable(cacheNames = "user1",key = "#root.method.name")
+    public User getUserInfo(@PathVariable Integer id){
+        User user = userServiceImpl.getUser(id);
+        return user;
+    }
+
+    @GetMapping("/getUserA/{id}")
+    @Cacheable(cacheNames = "user3",key = "#root.targetClass")
+    public User getUserA(@PathVariable Integer id){
         User user = userServiceImpl.getUser(id);
         return user;
     }

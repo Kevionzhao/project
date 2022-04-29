@@ -80,8 +80,6 @@ public class CustomerRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        Object primaryPrincipal = principals.getPrimaryPrincipal();
-        //        principals?.getPrimaryPrincipal() instanceof Admin
         System.out.println("————用户权限认证————");
         String username = JWTUtil.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -126,7 +124,7 @@ public class CustomerRealm extends AuthorizingRealm {
         // 设置自定义认证加密方式
         super.setCredentialsMatcher(customCredentialsMatcher);
     }
-    
-    
+
+
 
 }

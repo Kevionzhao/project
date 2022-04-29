@@ -19,16 +19,20 @@
         <module name="redis-lock-1" />
         <module name="bank3-demo" />
         <module name="redis-lock-2" />
+        <module name="spring-web-flux" />
         <module name="eureka-service" />
         <module name="hmily-bank1-demo" />
         <module name="pay-system-bank" />
+        <module name="Practice-Web" />
         <module name="rocketmsg-bank2-demo" />
         <module name="bank1-demo" />
+        <module name="spring-shiro-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bank2-demo" target="8" />
       <module name="euerkaclient-demo" target="8" />
+      <module name="zookeeper-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

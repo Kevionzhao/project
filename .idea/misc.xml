@@ -15,6 +15,7 @@
       <set>
         <option value="$PROJECT_DIR$/bank2-demo/pom.xml" />
         <option value="$PROJECT_DIR$/euerkaclient-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/zookeeper-demo/pom.xml" />
       </set>
     </option>
   </component>

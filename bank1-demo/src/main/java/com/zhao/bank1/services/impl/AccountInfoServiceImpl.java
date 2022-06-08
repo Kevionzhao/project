@@ -39,7 +39,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
         int accountBalance = accountInfoMapper.getAccountBalance(accountNo);
         //扣减张三的金额
         accountInfoMapper.updateAccountBalance(accountNo,accountBalance-amount);
-        accountInfoMapper.insertAccountPassword();
+//        accountInfoMapper.insertAccountPassword();
         //调用李四微服务，转账
         String transfer = bank2Client.transfer(amount);
         if("fallback".equals(transfer)){

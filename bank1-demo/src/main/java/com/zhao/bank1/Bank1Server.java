@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @EnableEurekaClient
 @RestController
-@EnableFeignClients(basePackages = {"com.zhao.spring"})
+@EnableFeignClients(basePackages = {"com.zhao.bank1.spring"})
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class Bank1Server {
     @RequestMapping("/")

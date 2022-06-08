@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan({"com.zhao.bank2","org.dromara.hmily"})
+@ComponentScan({"com.zhao.bank1.bank2","org.dromara.hmily"})
 public class HmilyBank2Demo {
     public static void main(String[] args) {
         SpringApplication.run(HmilyBank2Demo.class, args);

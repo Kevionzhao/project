@@ -1,4 +1,4 @@
-package com.zhao.proxy;
+package com.zhao.controller.proxy;
 
 import com.zhao.annotation.Api;
 import com.zhao.bean.MethodInfo;

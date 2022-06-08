@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author Admin
  */
-@FeignClient(value="bank2-demo")
+@FeignClient(value="bank2-demo",fallback = Bank2ClientFallback.class)
 public interface Bank2Client {
-    //远程调用李四的微服务
+    /**远程调用李四的微服务
+     *
+     * @param amount
+     * @return
+     */
     @GetMapping("/transfer")
     public  String transfer(@RequestParam("amount") Double amount);
 }

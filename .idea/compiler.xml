@@ -32,6 +32,8 @@
     <bytecodeTargetLevel>
       <module name="bank2-demo" target="8" />
       <module name="euerkaclient-demo" target="8" />
+      <module name="spring-dubbo-consumer" target="1.8" />
+      <module name="spring-dubbo-provider" target="1.8" />
       <module name="zookeeper-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -1,7 +1,7 @@
 package com.zhao;
 
 import com.zhao.interfaces.ProxyCreator;
-import com.zhao.proxy.JDKProxyCreator;
+import com.zhao.controller.proxy.JDKProxyCreator;
 import com.zhao.serverinfo.ApiServer;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.boot.SpringApplication;

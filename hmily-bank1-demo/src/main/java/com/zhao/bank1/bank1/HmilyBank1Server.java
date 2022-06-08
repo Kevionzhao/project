@@ -12,8 +12,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients(basePackages = {"com.zhao.bank1.spring" })
-@ComponentScan({"com.zhao.bank1","org.dromara.hmily"})
+@EnableFeignClients(basePackages = {"com.zhao.bank1.bank1.spring" })
+@ComponentScan({"com.zhao.bank1.bank1","org.dromara.hmily"})
 @EnableAspectJAutoProxy
 public class HmilyBank1Server {
     public static void main(String[] args) {
